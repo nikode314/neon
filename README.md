@@ -2,7 +2,7 @@
 - Lenguaje de programación Neon creado por Nikode.
 - Sigue en desarrollo. Sintaxis sencilla y un único ejecutable.
 
-# Comandos de Neon (0.2, actual):
+# Comandos de Neon (0.3, actual):
 ## 1. Variables
 
 | Comando | Función  |
@@ -14,6 +14,7 @@
 | `preguntar nombre tipo_de_variable variable` | Utiliza el contenido de una variable `tex` como mensaje de entrada. |
 | `preguntar nombre tipo_de_variable` | También se puede hacer sin texto. |
 | `sumar var1, va2` | Suma la primera variable num con la segunda variable o número. |
+| `sumar var1, doble` | Suma el doble de var1. |
 | `quitar variable tipo` | Elimina la variable escrita. |
 
 ### Tipos de variables
@@ -48,11 +49,14 @@
 
 | Comando | Función |
 |---|---|
-| `esperar numero` | Pausa la ejecución durante los segundos indicados. |
+| `esperar numero` | Pausa la ejecución durante los segundos indicados, puedes usar numeros o variables num. |
 | `lmp` | Limpia la terminal. |
 | `sal` | Termina la ejecución del intérprete. |
 | `:` | Añade un comentario que no se ejecuta. |
 | `pasar` | No hace nada. |
+| `titulo "algo"` | Cambia el titulo de la ventana, puedes usar comillas o una variable tex. |
+| `final` | Hace una pausa infinita. |
+
 
 
 ## 5. Ejecución
