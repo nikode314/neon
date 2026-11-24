@@ -2,12 +2,16 @@
 - Lenguaje de programación Neon creado por Nikode.
 - Sigue en desarrollo. Sintaxis sencilla y un único ejecutable.
 
-# Comandos de Neon (0.3, actual):
+# Comandos de Neon (0.4, actual):
 ## 1. Variables
 
 | Comando | Función  |
 |---|---|
-| `var nombre = valor` | Crea una variable. |
+| `var nombre = "texto"` | Crea una variable de texto. |
+| `var nombre = numero` | Crea una variable de numeros decimales. |
+| `var nombre = falso` | Crea una variable bool falsa. |
+| `var nombre = verdadero` | Crea una variable bool verdadera. |
+| `var nombre = otra_variable` | Crea una variable con el valor de otra variable. |
 | `preguntar nombre tex "texto"` | Solicita un texto al usuario con el promt "texto". |
 | `preguntar nombre num "texto"` | Solicita un número con el promt "texto". |
 | `preguntar nombre vof "texto"` | Solicita un booleano (`verdadero` o `falso`) con el promt "texto". |
@@ -30,10 +34,12 @@
 
 | Comando | Función |
 |---|---|
-| `decir "Hola"` | Imprime texto y salta de línea. |
-| `decir variable` | Muestra el contenido de una variable. |
-| `decirl "Hola"` | Imprime texto sin saltar de línea. |
-| `decirl variable` | Muestra una variable sin saltar de línea. |
+| `decir "texto"` | Imprime texto y salta de línea. |
+| `decir variable` | uestra el valor de una variable y salta de línea. |
+| `decirl "texto"` | Imprime texto sin saltar de línea. |
+| `decirl variable` | Muestra el valor de una variable sin saltar de línea. |
+| `"texto"` | Imprime texto y salta de línea. |
+| `variable` | Muestra el valor de una variable y salta de línea.
 
 ## 3. Condiciones
 
@@ -52,12 +58,12 @@
 | `esperar numero` | Pausa la ejecución durante los segundos indicados, puedes usar numeros o variables num. |
 | `lmp` | Limpia la terminal. |
 | `sal` | Termina la ejecución del intérprete. |
-| `:` | Añade un comentario que no se ejecuta. |
+| `<Comentario>` | Añade un comentario que no se ejecuta. |
 | `pasar` | No hace nada. |
 | `titulo "algo"` | Cambia el titulo de la ventana, puedes usar comillas o una variable tex. |
 | `final` | Hace una pausa infinita. |
-
-
+| `error "mensaje de error"` | Muestra un mensaje de error con el texto puesto. |
+| `error variable_tex` | Muestra un mensaje de error con el texto de la variable. |
 
 ## 5. Ejecución
 
@@ -65,6 +71,7 @@
 |---|---|
 | `archivo.ne` | Ejecuta un archivo de Neon. |
 | `--version` | Muestra la versión del intérprete. |
+| `--ayuda` | Muestra los comandos disponibles. |
 
 ## 6. Variables Por Defecto
 | Comando | Funcion |
@@ -75,7 +82,7 @@
 
 ## 7. Características adicionales
 
-- `|` permite separar varias instrucciones en una misma línea, pero cada `|` se intepreta como una linea didferente.
+- Puedes poner los comandos en mayusculas (ej. DECIR "hola").
 - Los bloques condicionales pueden anidarse.
 - Las variables conservan sus valores entre las repeticiones del archivo.
 - El intérprete admite hasta 531 ejecuciones del archivo.
@@ -87,7 +94,7 @@
 
 # Ejemplos
 ```
-::Terminal.
+<Terminal.>
 cuando inicio:
     decir "Terminal Neon"
     var promt = ": "
@@ -122,7 +129,8 @@ cuando consola:
 
                 no comando == "cambiar":
                     si comando == "version":
-                        decirl "Neon Versión: "| decir version
+                        decirl "Neon Versión: "
+                        decir version
                     fin
 
                     no comando == "version":
@@ -138,7 +146,8 @@ cuando consola:
 
                             no comando == "":
                                 si comando == "ayuda":
-                                    decir "Lista De Comandos:"| decir ""
+                                    decir "Lista De Comandos:"
+                                    decir ""
                                     decir "limpiar"
                                     decir "salir"
                                     decir "decir"
@@ -149,7 +158,9 @@ cuando consola:
                                 fin
 
                                 no comando == "ayuda":
-                                    decirl "Error: Comando ""| decirl comando| decir "" No Existente."
+                                    decirl "Error: Comando ""
+                                    decirl comando
+                                    decir "" No Existente."
                                 fin
                             fin
                         fin
@@ -168,7 +179,9 @@ sal
 ```
 salida esperada:
 
-`Hola Mundo`
+```
+Hola Mundo
+```
 
 ```
 cuando inicio:
@@ -196,13 +209,14 @@ fin
 ```
 salida esperada:
 
-`ola
+```
+ola
 ola
 pasa
 pasa
-`
+``` 
 
-`
+```
 cuando inicio:
     var maxe = 100000000000000000000000000000
     var x = 0
@@ -222,13 +236,50 @@ si x == 2:
     decir "completado"
     sal
 fin
-`
+```
 salida esperada:
 
-`
+```
 1.0
 2.0
 completado
-`
+```
+
+```
+<Nuevo Tipo De Variable (bin).>
+
+cuando inicio:
+    var encendido = falso
+    var inicio = falso
+fin
+
+preguntar bin tex "Nuevo tipo de variable, bin (0/1): "
+si bin == "1":
+    cuando encendido:
+        decir "Ya Estaba Encendido."
+    fin
+    cuando no encendido:
+        decir "Encendido."
+        var encendido = verdadero
+    fin
+fin
+
+si bin == "0":
+    cuando no encendido:
+        decir "Ya Estaba Apagado."
+    fin
+    cuando encendido:
+        decir "Apagado."
+        var encendido = falso
+    fin
+fin
+
+no bin == "0":
+    no bin == "1":
+        error "Tipo de variable incorreto."
+        sal
+    fin
+fin
+```
 
 # Feliz Jueves.
